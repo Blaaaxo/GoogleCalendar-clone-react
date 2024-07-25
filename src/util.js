@@ -1,4 +1,7 @@
 import dayjs from "dayjs";
+import { es } from "dayjs/locale/es";
+
+dayjs.locale("es")
 
 // Exporta una función llamada getMonth que toma un parámetro opcional 'month'
 export function getMonth(month = dayjs().month()){
