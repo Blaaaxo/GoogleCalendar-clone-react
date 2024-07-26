@@ -1,12 +1,18 @@
-import React, { useState } from "react"
+import React, { useState, useContext, useEffect } from "react"
 import { getMonth } from "./util"
 import CalendarHeader from "./components/CalendarHeader"
 import Month from "./components/Calendar/Month"
 import Sidebar from "./components/Calendar/Sidebar"
+import GlobalContext from './context/GlobalContext.jsx'
 
 function App() {
   
   const [currentMonth, setCurrentMonth] = useState(getMonth())
+  const { monthIndex } = useContext(GlobalContext)
+
+  useEffect(() => {
+    setCurrentMonth(getMonth(monthIndex))
+  },[monthIndex])
 
   return (
     <>
