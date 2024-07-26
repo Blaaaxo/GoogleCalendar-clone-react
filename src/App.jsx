@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react"
 import { getMonth } from "./util"
 import CalendarHeader from "./components/CalendarHeader"
 import Month from "./components/Calendar/Month"
-import Sidebar from "./components/Calendar/Sidebar"
+import Sidebar from "./components/Calendar/Sidebar/Sidebar.jsx"
 import GlobalContext from './context/GlobalContext.jsx'
 
 function App() {
