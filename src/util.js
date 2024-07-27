@@ -5,6 +5,9 @@ dayjs.locale("es")
 
 // Exporta una función llamada getMonth que toma un parámetro opcional 'month'
 export function getMonth(month = dayjs().month()){
+
+    month = Math.floor(month);
+
     const year = dayjs().year();
     const firstDayOfTheMouth = dayjs(new Date(year, month, 1)).day();
 
