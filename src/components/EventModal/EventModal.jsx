@@ -44,13 +44,30 @@ const labelClasses = [
 
 export default function EventModal() {
 
-    const { setShowEventModal, daySelected } = useContext(GlobalContext)
+    const { setShowEventModal, daySelected, dispatchCalEvent } = useContext(GlobalContext)
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
     const [selectedLabel, setSelectedLabel] = useState('')
 
     const switchClases = (color) => {
         return selectedLabel === color.colour ? color.selected : `${color.class} ${color.hover}`
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        const calendarEvent = {
+            title, 
+            description,
+            label: selectedLabel,
+            date: daySelected.valueOf(),
+            id: Date.now()
+        }
+        dispatchCalEvent({
+            type: 'push',
+            payload: calendarEvent
+        })
+        setShowEventModal(false)
+        console.log("Event added", calendarEvent)
     }
 
     return (
@@ -104,7 +121,9 @@ export default function EventModal() {
                     </div>
                 </div>
                 <footer className='flex justify-end w-100 border-t p-3 mt-5'>
-                    <button className='bg-blue-500 hover:bg-blue-600 px-6 py-1.5 rounded text-white'>
+                    <button 
+                        onClick={handleSubmit}
+                        className='bg-blue-500 hover:bg-blue-600 px-6 py-1.5 rounded text-white'>
                         Save
                     </button>
                 </footer>
